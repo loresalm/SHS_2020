@@ -29,10 +29,10 @@ public class Particle {
 
   void show() {
     pushMatrix();
-    translate(pos.x, pos.y );
+    translate(pos.x, pos.y);
     rotate(pos.heading());
-    stroke(0,200);
-    strokeWeight(1);
+    stroke(0,10);
+    strokeWeight(10);
     point(0,0);
     //line(pos.x, pos.y, previousPos.x, previousPos.y);
     popMatrix();

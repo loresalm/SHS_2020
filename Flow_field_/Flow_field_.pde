@@ -17,8 +17,8 @@ void setup(){
   
   // generating particles
   for(int i = 0; i <nb_par; i+=1){
-    PVector start = new PVector(random(250,width-1),random(0,300));
-    parts[i] = new Particle(start,random(2,8));
+    PVector start = new PVector(random(0,width),random(0,height));
+    parts[i] = new Particle(start,1);
   }
 
   vf = new VectorField("medium.jpg");
