@@ -1,94 +1,23 @@
 
-//import processing.pdf.*;
+// simulation parameters
 int scl = 5;
+int nb_par = 1000;
+int size_sim = 1000;
+
+
+// GLOBAL variables
 int cols = 0;
 int rows = 0;
-int nb_par = 1000;
 PVector [] ff = new PVector[50*50];
 Particle [] parts = new Particle [nb_par];
 
-public class Particle {
-  PVector pos;
-  PVector vel;
-  PVector acc;
-  PVector previousPos;
-  float maxSpeed;
-   
-  Particle(PVector start, float maxspeed) {
-    maxSpeed = maxspeed;
-    pos = start;
-    vel = new PVector(0, 0);
-    acc = new PVector(0, 0);
-    previousPos = pos.copy();
-  }
-  void run() {
-    update();
-    edges();
-    show();
-  }
-  void update() {
-    pos.add(vel);
-    vel.limit(maxSpeed);
-    vel.add(acc);
-    acc.mult(0);
-  }
-  void applyForce(PVector force) {
-    acc.add(force); 
-  }
-  void show() {
-    pushMatrix();
-    translate(pos.x, pos.y );
-    rotate(pos.heading());
-    stroke(0,200);
-    strokeWeight(1);
-    point(0,0);
-    //line(pos.x, pos.y, previousPos.x, previousPos.y);
-    popMatrix();
-    //
-    updatePreviousPos();
-  }
-  void edges() {
-    if (pos.x > width) {
-      pos.x = random(0,width-1) ;
-      
-      updatePreviousPos();
-    }
-    if (pos.x < 0) {
-      pos.x = random(0,width-1);
-      
-      updatePreviousPos();
-    }
-    if (pos.y > height) {
-      pos.y = random(0,height-1);
-      
-      updatePreviousPos();
-    }
-    if (pos.y < 0) {
-      pos.y = random(0,height-1);
-      
-      updatePreviousPos();
-    }
-  }
-  void updatePreviousPos() {
-    this.previousPos.x = pos.x;
-    this.previousPos.y = pos.y;
-  }
-  void follow( PVector [] flowfield, int cols) {
-    int x = floor(pos.x / scl);
-    int y = floor(pos.y / scl);
-    int index = x + y * cols;
-    //println("i: ", index, "x: ", x, "y: ", y, "cols: ", cols);
-    PVector force = flowfield[index];
-    this.applyForce(force);
-  }
-}
-
 
 PImage img;
+
+
 void setup(){
   background(255);
-  //size(2000, 2000,PDF, "SHS1M.pdf");
-  size(1000, 1000);
+  size(size_sim, size_sim);
   cols = floor(width/scl);
   rows = floor(height/scl);
   img = loadImage("medium.jpg");
