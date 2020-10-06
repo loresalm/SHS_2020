@@ -1,3 +1,5 @@
+int noise_param = 0;
+
 public class VectorField {
 
     PVector [] ff;
@@ -62,11 +64,20 @@ public class VectorField {
                 translate(x*_scl, y * _scl);
                 rotate(v.heading());
                 stroke(0,100); 
-                //line(0,0,scl,0);
+                line(0,0,scl,0);
                 popMatrix();
             }
         }
         return _ff;
+    }
+
+
+    void updateField(){
+
+        for(PVector v : ff){
+            v.rotate(noise(noise_param+=0.1)*0.01) ;
+        }
+
     }
 
 

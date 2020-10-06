@@ -26,6 +26,8 @@ void setup(){
 }
 
 void draw(){
+
+  vf.updateField();
   
   for (Particle p : parts) {
      p.follow(vf);
