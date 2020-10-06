@@ -51,18 +51,20 @@ public class VectorField {
                 //println(" - > ",_cols);
                 i = (x + y * _cols);
                 //println("i: ",i, " x: ", x, " y: ", y);
-                angle = img[i];
+                angle = img[i]+random(0,1);
                 v = PVector.fromAngle(angle);
                 _ff[i] = v;
                 //fill(color(original[i]));
                 //print(original[i]);
-                //noStroke();
-                //rect(x*_scl, y * _scl,_scl,_scl);
+                noStroke();
+                rect(x*_scl, y * _scl,_scl,_scl);
                 pushMatrix();
                 translate(x*_scl, y * _scl);
                 rotate(v.heading());
-                stroke(0,100); 
-                //line(0,0,scl,0);
+                
+                //stroke(0,100); 
+                
+                line(0,0,scl,0);
                 popMatrix();
             }
         }

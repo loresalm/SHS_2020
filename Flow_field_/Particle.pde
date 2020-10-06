@@ -41,19 +41,19 @@ public class Particle {
 
   void edges() {
     if (pos.x > width) {
-      pos.x = random(0,width-1) ;
+      pos.x = 0; // random(0,width-1) ;
+      updatePreviousPos();
+    } else if (pos.x < 0) {
+      pos.x = width-1; // random(0,width-1);
       updatePreviousPos();
     }
-    if (pos.x < 0) {
-      pos.x = random(0,width-1);
-      updatePreviousPos();
-    }
+
+
     if (pos.y > height) {
-      pos.y = random(0,height-1);
+      pos.y = 0; // random(0,height-1);
       updatePreviousPos();
-    }
-    if (pos.y < 0) {
-      pos.y = random(0,height-1);
+    } else if (pos.y < 0) {
+      pos.y = height-1; // random(0,height-1);
       updatePreviousPos();
     }
   }
