@@ -51,7 +51,7 @@ public class VectorField {
                 //println(" - > ",_cols);
                 i = (x + y * _cols);
                 //println("i: ",i, " x: ", x, " y: ", y);
-                angle = img[i];
+                angle = img[i]+noise(i)*2;
                 v = PVector.fromAngle(angle);
                 _ff[i] = v;
                 //fill(color(original[i]));
