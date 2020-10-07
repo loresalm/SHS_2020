@@ -64,7 +64,7 @@ public class VectorField {
                 translate(x*_scl, y * _scl);
                 rotate(v.heading());
                 stroke(0,100); 
-                line(0,0,scl,0);
+                //line(0,0,scl,0);
                 popMatrix();
             }
         }
@@ -79,6 +79,9 @@ public class VectorField {
         }
 
     }
+
+
+    
 
 
 }

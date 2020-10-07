@@ -41,19 +41,19 @@ public class Particle {
 
   void edges() {
     if (pos.x > width) {
-      pos.x = random(0,width-1) ;
+      pos.x = width-1;//random(0,width-1) ;
       updatePreviousPos();
     }
     if (pos.x < 0) {
-      pos.x = random(0,width-1);
+      pos.x = 0 ;//random(0,width-1);
       updatePreviousPos();
     }
     if (pos.y > height) {
-      pos.y = random(0,height-1);
+      pos.y = height-1;random(0,height-1);
       updatePreviousPos();
     }
     if (pos.y < 0) {
-      pos.y = random(0,height-1);
+      pos.y = 0;//random(0,height-1);
       updatePreviousPos();
     }
   }
@@ -70,6 +70,43 @@ public class Particle {
 
     this.applyForce( v.get_vector( x, y) );
 
+  }
+
+
+
+    // PARTICLE WITH CENTER FILTER
+
+  void follow(VectorField v , int c_x , int c_y , int rad ){
+
+    int x = floor(pos.x / scl);
+    int y = floor(pos.y / scl);
+
+    PVector c_filter = new PVector(c_x - pos.x ,c_y - pos.y);
+
+    if(rad > c_filter.mag())    
+      this.applyForce( v.get_vector( x, y) );
+
+  }
+
+  void show( int c_x , int c_y , int rad ) {
+
+    PVector c_filter = new PVector(c_x - pos.x ,c_y - pos.y);
+
+    
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(pos.heading());
+
+    if(rad > c_filter.mag())  
+      stroke(0,10);
+    else 
+      stroke(0, 1000/ c_filter.mag() );
+
+    strokeWeight(10);
+    point(0,0);
+    //line(pos.x, pos.y, previousPos.x, previousPos.y);
+    popMatrix();
+    updatePreviousPos();
   }
 
 }
